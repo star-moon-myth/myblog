@@ -11,13 +11,12 @@ func main() {
 
     r := gin.Default()
 
-    routes.SetupRoutes(r, db)
+    // 加载模板
+    r.LoadHTMLGlob("templates/*")
+    // 静态文件
+    r.Static("/static", "./static")
 
-    r.GET("/", func(c *gin.Context) {
-        c.JSON(200, gin.H{
-            "message": "My blog is alive! 🎉 DB connected!",
-        })
-    })
+    routes.SetupRoutes(r, db)
 
     r.Run(":8080")
 }

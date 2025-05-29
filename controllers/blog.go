@@ -17,3 +17,13 @@ func GetPosts(db *gorm.DB) gin.HandlerFunc {
         c.JSON(http.StatusOK, posts)
     }
 }
+
+func Index(db *gorm.DB) gin.HandlerFunc {
+    return func(c *gin.Context) {
+        var posts []models.Post
+        db.Find(&posts)
+        c.HTML(http.StatusOK, "index.html", gin.H{
+            "Posts": posts,
+        })
+    }
+}

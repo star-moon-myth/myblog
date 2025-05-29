@@ -8,4 +8,5 @@ import (
 
 func SetupRoutes(r *gin.Engine, db *gorm.DB) {
     r.GET("/posts", controllers.GetPosts(db))
+    r.GET("/", controllers.Index(db))
 }
